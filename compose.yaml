@@ -13,9 +13,12 @@ services:
       - db_data:/var/lib/postgresql
       - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
       - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./sql/02-schema.sql:/docker-entrypoint-initdb.d/02-schema.sql:ro
+      - ./sql/03-data.sql:/docker-entrypoint-initdb.d/03-data.sql:ro
   app:
     build: .
-    image: postgres-homework:hw1
+    image: postgres-homework:hw3
+    env_file: ${APP_ENV_FILE:-demo.env}
     stdin_open: true
     tty: true
 volumes:
