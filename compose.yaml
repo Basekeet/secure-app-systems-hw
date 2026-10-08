@@ -15,8 +15,7 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
   app:
     build: .
-    image: postgres-homework:hw1
-    stdin_open: true
-    tty: true
+    image: postgres-homework:hw2
+    env_file: ${APP_ENV_FILE:-demo.env}
 volumes:
   db_data:
